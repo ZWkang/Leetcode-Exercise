@@ -10,6 +10,7 @@
 // 也可以简短不用手动--
 // 使用赋值同时--
 // eg: nums1[len--] = nums1[m--]
+// two pointer 划分区间
 var merge = function(nums1, m, nums2, n) {
   var len = m + n - 1;
   m -= 1;
