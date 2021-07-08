@@ -53,3 +53,39 @@ var addTwoNumbers = function(l1, l2) {
   }
   return dummy.next;
 };
+
+
+// 另外一种做法，这种做法消减了最后一次特异性判断
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+ var addTwoNumbers = function(l1, l2) {
+  const dummyNode = new ListNode();
+  let cursorNode = dummyNode;
+  let over = 0;
+  while(l1 !== null || l2 !== null || over !== 0) {
+    let l1Value = l1 !== null ? l1.val : 0;
+    let l2Value = l2 !== null ? l2.val : 0;
+    let sum = l1Value + l2Value + over;
+
+    over = (sum / 10) | 0
+
+    let nextNode = new ListNode(sum % 10);
+    cursorNode.next = nextNode;
+    cursorNode = nextNode;
+
+    if(l1 !== null ) l1 = l1.next;
+    if(l2 !== null ) l2 = l2.next;
+  }
+
+  return dummyNode.next;
+};
